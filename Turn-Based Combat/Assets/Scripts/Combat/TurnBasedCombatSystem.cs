@@ -26,7 +26,6 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
     [Header("Combat Encounter")]
     public CombatEncounter combatEncounter;
-    public List<UnitData> enemyUnitsData;
 
     [Header("Prefabs")]
     public GameObject enemyUnitPrefab;
@@ -58,8 +57,6 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
     public void StartCombat()
     {
-        enemyUnitsData = combatEncounter.enemyUnits;
-
         CreateUnits();
 
         currentUnitIndex = 0;
@@ -72,9 +69,9 @@ public class TurnBasedCombatSystem : MonoBehaviour
     {
         //CreatePlayerUnits()
 
-        foreach (UnitData data in enemyUnitsData)
+        foreach (Encounter encounter in combatEncounter.encounters)
         {
-            CreateEnemyUnits(data);
+            CreateEnemyUnits(encounter.enemyUnitData, encounter.enemySprite);
         }
     }
 
@@ -83,7 +80,7 @@ public class TurnBasedCombatSystem : MonoBehaviour
         
     }
 
-    private void CreateEnemyUnits(UnitData data)
+    private void CreateEnemyUnits(UnitData data, Sprite enemySprite)
     {
         GameObject enemyUnitObject = Instantiate(enemyUnitPrefab) as GameObject;
         enemyUnitObject.transform.SetParent(enemyContent, false);
@@ -92,9 +89,10 @@ public class TurnBasedCombatSystem : MonoBehaviour
         enemyBox.transform.SetParent(enemyStationContent, false);
 
         Enemy enemy = enemyBox.GetComponent<Enemy>();
+        enemy.enemyImage.sprite = enemySprite;
         
         Unit enemyUnit = enemyUnitObject.GetComponent<Unit>();
-        enemyUnit.unitData = data;
+        enemyUnit.CreateUnit(data);
         enemyUnit.unitImage = enemy.enemyImage;
         enemyUnit.animator = enemy.animator;
 
@@ -168,12 +166,14 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
         if (turn == Turn.Player)
         {
-            if (currentUnitIndex != playerUnits.Count)
+            if (currentUnitIndex < playerUnits.Count)
             {
                 for (int i = currentUnitIndex; i < playerUnits.Count; i++)
                 {
                     if (!playerUnits[i].IsDead())
                     {
+                        currentUnitIndex = i;
+
                         currentUnit = playerUnits[i];
 
                         return;
@@ -190,12 +190,14 @@ public class TurnBasedCombatSystem : MonoBehaviour
         
         if (turn == Turn.Enemy)
         {
-            if (currentUnitIndex != enemyUnits.Count)
+            if (currentUnitIndex < enemyUnits.Count)
             {
                 for (int i = currentUnitIndex; i < enemyUnits.Count; i++)
                 {
                     if (!enemyUnits[i].IsDead())
                     {
+                        currentUnitIndex = i;
+
                         currentUnit = enemyUnits[i];
 
                         return;
@@ -229,20 +231,25 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
     public void EndTurn()
     {
-        PlayerActions(false);
-
-        SelectNextActiveUnit();
-
-        if (turn == Turn.Player)
+        if (IsGameOver() != 0)
         {
-            PlayerTurn();
+            GameOver();
         }
-        else if (turn == Turn.Enemy)
+        else
         {
-            EnemyTurn();
-        }
+            PlayerActions(false);
 
-        GameOver();
+            SelectNextActiveUnit();
+
+            if (turn == Turn.Player)
+            {
+                PlayerTurn();
+            }
+            else if (turn == Turn.Enemy)
+            {
+                EnemyTurn();
+            }
+        }
     }
 
     private IEnumerator WaitEndTurn(float delay)
@@ -311,10 +318,12 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
         GameObject backButtonObject = Instantiate(buttonPrefab) as GameObject;
         backButtonObject.transform.SetParent(playerTargetSelect.transform, false);
+
+        backButtonObject.transform.Find("Text").GetComponent<Text>().text = "Back";
         
-        Button backButton = backButtonObject.GetComponent<Button>();
-        backButton.onClick.AddListener(() => playerActionSelect.SetActive(true));
-        backButton.onClick.AddListener(() => playerTargetSelect.SetActive(false));
+        Button backButtonComponent = backButtonObject.GetComponent<Button>();
+        backButtonComponent.onClick.AddListener(() => playerActionSelect.SetActive(true));
+        backButtonComponent.onClick.AddListener(() => playerTargetSelect.SetActive(false));
 
         foreach (Unit unit in enemyUnits)
         {
@@ -322,10 +331,12 @@ public class TurnBasedCombatSystem : MonoBehaviour
             {
                 GameObject buttonObject = Instantiate(buttonPrefab) as GameObject;
                 buttonObject.transform.SetParent(playerTargetSelect.transform, false);
+
+                buttonObject.transform.Find("Text").GetComponent<Text>().text = unit.unitName;
                 
-                Button button = buttonObject.GetComponent<Button>();
-                button.onClick.AddListener(() => SetTarget(unit));
-                button.onClick.AddListener(() => AttackTarget());
+                Button buttonComponent = buttonObject.GetComponent<Button>();
+                buttonComponent.onClick.AddListener(() => SetTarget(unit));
+                buttonComponent.onClick.AddListener(() => AttackTarget());
             }
         }
     }

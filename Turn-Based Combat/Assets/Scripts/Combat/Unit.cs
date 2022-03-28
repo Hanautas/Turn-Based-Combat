@@ -11,10 +11,10 @@ public enum Team
 
 public class Unit : MonoBehaviour
 {
+    [Header("Team")]
     public Team team;
 
-    public UnitData unitData;
-
+    [Header("Name")]
     public string unitName;
     public Color unitNameColor;
 
@@ -57,19 +57,36 @@ public class Unit : MonoBehaviour
         currentHealth = maxHealth;
         currentStamina = maxStamina;
 
-        SetUnitSlider(healthText, healthSlider, maxHealth, currentHealth);
-        SetUnitSlider(staminaText, staminaSlider, maxStamina, currentStamina);
+        SetUnitSlider(healthSlider, healthText, maxHealth, currentHealth);
+        SetUnitSlider(staminaSlider, staminaText, maxStamina, currentStamina);
     }
 
     void Reset()
     {
-        unitData = new UnitData();
         unitNameColor = new Color(1, 1, 1, 1);
+    }
+
+    public void CreateUnit(UnitData data)
+    {
+        unitName = data.unitName;
+        unitNameColor = data.unitNameColor;
+        maxHealth = data.maxHealth;
+        maxStamina = data.maxStamina;
+        damage = data.damage;
     }
 
     public int Attack()
     {
-        return damage;
+        Debug.Log(unitName + " attacked!");
+        
+        if (!IsDead())
+        {
+            return damage;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public void Damage(int damage)
@@ -85,11 +102,12 @@ public class Unit : MonoBehaviour
             currentHealth -= damage;
         }
 
-        UpdateSlider(healthSlider, currentHealth);
-        UpdateSliderText(healthText, maxHealth, currentHealth);
+        UpdateSlider(healthSlider, healthText, maxHealth, currentHealth);
 
         if (team == Team.Player)
         {
+            animator.SetTrigger("Damage");
+
             SetUnitSprite();
         }
         else if (team == Team.Enemy)
@@ -122,22 +140,18 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private void SetUnitSlider(Text text, Slider slider, int max, int current)
+    private void SetUnitSlider(Slider slider, Text text, int max, int current)
     {
         slider.maxValue = max;
         slider.value = slider.maxValue;
 
-        UpdateSliderText(text, max, current);
-
+        text.text = $"{current} / {max}";
     }
 
-    private void UpdateSlider(Slider slider, int current)
+    private void UpdateSlider(Slider slider, Text text, int max, int current)
     {
         slider.value = current;
-    }
 
-    private void UpdateSliderText(Text text, int max, int current)
-    {
         text.text = $"{current} / {max}";
     }
 

@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatEncounter : MonoBehaviour
 {
-    public List<UnitData> enemyUnits;
+    public List<Encounter> encounters;
 
     void Reset()
     {
-        enemyUnits = new List<UnitData>()
+        encounters = new List<Encounter>()
         {
-            new UnitData()
+            new Encounter()
         };
     }
 
@@ -18,4 +19,11 @@ public class CombatEncounter : MonoBehaviour
     {
         //GameManager.instance.LoadScene("Combat");
     }
+}
+
+[System.Serializable]
+public class Encounter
+{
+    public Sprite enemySprite;
+    public UnitData enemyUnitData;
 }
