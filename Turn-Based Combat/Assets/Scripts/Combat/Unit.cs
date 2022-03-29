@@ -33,6 +33,8 @@ public class Unit : MonoBehaviour
     [Header("UI")]
     public Text unitNameText;
 
+    public SpriteHandler spriteHandler;
+
     public Image unitImage;
     public Sprite[] unitSprites;
     
@@ -125,6 +127,8 @@ public class Unit : MonoBehaviour
         if (team == Team.Enemy)
         {
             animator.SetBool("IsDead", true);
+
+            StartCoroutine(HideUnit());
         }
     }
 
@@ -138,6 +142,15 @@ public class Unit : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private IEnumerator HideUnit()
+    {
+        yield return new WaitForSeconds(1f);
+
+        spriteHandler.gameObject.SetActive(false);
+
+        gameObject.SetActive(false);
     }
 
     private void SetUnitSlider(Slider slider, Text text, int max, int current)

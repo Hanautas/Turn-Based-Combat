@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public class SpriteHandler : MonoBehaviour
 {
-    public Image enemyImage;
+    public Image entityImage;
     public Animator animator;
 }

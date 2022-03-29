@@ -16,6 +16,8 @@ public class TurnBasedCombatSystem : MonoBehaviour
     [Header("Combat System")]
     public Turn turn;
 
+    public bool canAttack;
+
     public int currentUnitIndex;
     public Unit currentUnit;
 
@@ -80,7 +82,7 @@ public class TurnBasedCombatSystem : MonoBehaviour
         
     }
 
-    private void CreateEnemyUnits(UnitData data, Sprite enemySprite)
+    private void CreateEnemyUnits(UnitData unitData, Sprite enemySprite)
     {
         GameObject enemyUnitObject = Instantiate(enemyUnitPrefab) as GameObject;
         enemyUnitObject.transform.SetParent(enemyContent, false);
@@ -88,13 +90,18 @@ public class TurnBasedCombatSystem : MonoBehaviour
         GameObject enemyBox = Instantiate(enemyBoxPrefab) as GameObject;
         enemyBox.transform.SetParent(enemyStationContent, false);
 
-        Enemy enemy = enemyBox.GetComponent<Enemy>();
-        enemy.enemyImage.sprite = enemySprite;
+        SpriteHandler spriteHandler = enemyBox.GetComponent<SpriteHandler>();
+        spriteHandler.entityImage.sprite = enemySprite;
         
         Unit enemyUnit = enemyUnitObject.GetComponent<Unit>();
-        enemyUnit.CreateUnit(data);
-        enemyUnit.unitImage = enemy.enemyImage;
-        enemyUnit.animator = enemy.animator;
+        enemyUnit.CreateUnit(unitData);
+        enemyUnit.spriteHandler = spriteHandler;
+        enemyUnit.unitImage = spriteHandler.entityImage;
+        enemyUnit.animator = spriteHandler.animator;
+
+        Button enemyButtonComponent = enemyBox.transform.Find("Button").GetComponent<Button>();
+        enemyButtonComponent.onClick.AddListener(() => SetTarget(enemyUnit));
+        enemyButtonComponent.onClick.AddListener(() => AttackTarget());
 
         enemyUnits.Add(enemyUnit);
     }
@@ -217,7 +224,9 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
     private void PlayerTurn()
     {
-        PlayerActions(true);
+        canAttack = true;
+
+        //PlayerActions(true);
     }
 
     private void EnemyTurn()
@@ -254,7 +263,9 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
     private IEnumerator WaitEndTurn(float delay)
     {
-        PlayerActions(false);
+        canAttack = false;
+
+        //PlayerActions(false);
 
         yield return new WaitForSeconds(delay);
 
@@ -288,9 +299,16 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
     public void AttackTarget()
     {
-        target.Damage(currentUnit.Attack());
+        if (canAttack)
+        {
+            target.Damage(currentUnit.Attack());
 
-        StartCoroutine(WaitEndTurn(1f));
+            StartCoroutine(WaitEndTurn(1f));
+        }
+        else
+        {
+            Debug.Log("Can't attack!");
+        }
     }
 
     public void PlayerActions(bool isActive)
