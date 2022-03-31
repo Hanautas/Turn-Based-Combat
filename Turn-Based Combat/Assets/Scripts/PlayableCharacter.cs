@@ -2,18 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayableCharacter : MonoBehaviour
+public enum Faction
 {
+    None,
+    Humans
+}
+
+[System.Serializable]
+public class PlayableCharacter
+{
+    public bool isRecruited;
+
+    [Header("Character")]
     public string characterName;
-    public string faction;
+    public int age;
+    public float height;
 
-    void Start()
-    {
-        
-    }
+    public Faction faction;
 
-    void Update()
-    {
-        
-    }
+    [Header("Combat")]
+    public UnitData unitData;
+    public Sprite[] unitSprites;
 }

@@ -30,10 +30,14 @@ public class TurnBasedCombatSystem : MonoBehaviour
     public CombatEncounter combatEncounter;
 
     [Header("Prefabs")]
+    public GameObject playerUnitPrefab;
+
     public GameObject enemyUnitPrefab;
     public GameObject enemyBoxPrefab;
 
     [Header("UI")]
+    public Transform playerContent;
+
     public Transform enemyContent;
     public Transform enemyStationContent;
 
@@ -69,7 +73,13 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
     private void CreateUnits()
     {
-        //CreatePlayerUnits()
+        for (int i = 0; i < PlayerData.instance.playableCharacters.Length; i++)
+        {
+            if (PlayerData.instance.GetIsRecruited(i))
+            {
+                CreatePlayerUnits(PlayerData.instance.GetUnitData(i), PlayerData.instance.GetUnitSprites(i));
+            }
+        }
 
         foreach (Encounter encounter in combatEncounter.encounters)
         {
@@ -77,9 +87,16 @@ public class TurnBasedCombatSystem : MonoBehaviour
         }
     }
 
-    private void CreatePlayerUnits()
+    private void CreatePlayerUnits(UnitData unitData, Sprite[] playerSprites)
     {
+        GameObject UnitObject = Instantiate(playerUnitPrefab) as GameObject;
+        UnitObject.transform.SetParent(playerContent, false);
         
+        Unit playerUnit = UnitObject.GetComponent<Unit>();
+        playerUnit.CreateUnit(unitData);
+        playerUnit.unitSprites = playerSprites;
+
+        playerUnits.Add(playerUnit);
     }
 
     private void CreateEnemyUnits(UnitData unitData, Sprite enemySprite)
@@ -295,6 +312,18 @@ public class TurnBasedCombatSystem : MonoBehaviour
         }
 
         return aliveUnits[Random.Range(0, aliveUnits.Count - 1)];
+    }
+
+    public void AttackMode(bool isActive)
+    {
+        if (isActive)
+        {
+            
+        }
+        else if (!isActive)
+        {
+            
+        }
     }
 
     public void AttackTarget()
