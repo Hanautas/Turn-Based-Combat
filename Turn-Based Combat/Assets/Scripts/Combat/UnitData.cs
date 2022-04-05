@@ -17,4 +17,7 @@ public class UnitData
 
     [Header("Damage")]
     public int damage;
+
+    [Header("Abilities")]
+    public Ability[] abilities;
 }

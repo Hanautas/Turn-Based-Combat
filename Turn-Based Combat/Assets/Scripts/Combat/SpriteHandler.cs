@@ -7,4 +7,5 @@ public class SpriteHandler : MonoBehaviour
 {
     public Image entityImage;
     public Animator animator;
+    public Animator effectsAnimator;
 }

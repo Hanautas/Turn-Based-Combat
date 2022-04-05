@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Heal : MonoBehaviour
+[CreateAssetMenu]
+public class Heal : Ability
 {
-    public Ability ability;
+    public int amount;
 
-    void Start()
+    public override void Activate()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        TurnBasedCombatSystem.instance.target.Heal(amount);
     }
 }

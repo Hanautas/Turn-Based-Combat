@@ -30,6 +30,9 @@ public class Unit : MonoBehaviour
     [Header("Damage")]
     public int damage;
 
+    [Header("Abilities")]
+    public Ability[] abilities;
+
     [Header("UI")]
     public Text unitNameText;
 
@@ -75,6 +78,7 @@ public class Unit : MonoBehaviour
         maxHealth = data.maxHealth;
         maxStamina = data.maxStamina;
         damage = data.damage;
+        abilities = data.abilities;
     }
 
     public int Attack()
@@ -116,6 +120,27 @@ public class Unit : MonoBehaviour
         {
             animator.SetTrigger("Damage");
         }
+    }
+
+    public void Heal(int amount)
+    {
+        int newHealth = currentHealth + amount;
+
+        if (newHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            currentHealth += amount;
+        }
+
+        UpdateSlider(healthSlider, healthText, maxHealth, currentHealth);
+    }
+
+    public void ActivateAbility(int index)
+    {
+        abilities[index].Activate();
     }
 
     private void Dead()
@@ -187,6 +212,14 @@ public class Unit : MonoBehaviour
         else if (healthPercentage <= 0 || IsDead())
         {
             unitImage.sprite = unitSprites[3];
+        }
+    }
+
+    public void PlayEffect(string trigger)
+    {
+        if (team == Team.Enemy)
+        {
+            spriteHandler.effectsAnimator.Play(trigger);
         }
     }
 }

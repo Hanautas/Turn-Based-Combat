@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Ability
+public class Ability : ScriptableObject
 {
     public int cost;
-    public string name;
+    public string abilityName;
     [TextArea(3, 5)]
-    public string description;
+    public string abilityDescription;
+
+    public virtual void Activate()
+    {
+        Debug.Log("No Function!");
+    }
 }
