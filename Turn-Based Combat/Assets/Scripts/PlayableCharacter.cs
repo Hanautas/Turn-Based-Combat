@@ -5,7 +5,8 @@ using UnityEngine;
 public enum Faction
 {
     None,
-    Humans
+    TheRemnants,
+    REDACTED
 }
 
 [System.Serializable]
@@ -17,6 +18,8 @@ public class PlayableCharacter
     public string characterName;
     public int age;
     public float height;
+    public string likes;
+    public string dislikes;
 
     public Faction faction;
 

@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 1, y: 1}
+  m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
 --- !u!1 &2780910776414289835
 GameObject:
@@ -877,7 +877,9 @@ MonoBehaviour:
   maxStamina: 0
   currentStamina: 0
   damage: 0
+  abilities: []
   unitNameText: {fileID: 2780910776406611135}
+  spriteHandler: {fileID: 0}
   unitImage: {fileID: 0}
   unitSprites:
   - {fileID: 0}

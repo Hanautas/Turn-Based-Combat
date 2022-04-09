@@ -44,7 +44,7 @@ public class TurnBasedCombatSystem : MonoBehaviour
     public GameObject playerActions;
     public GameObject playerActionSelect;
     public GameObject playerAbilitySelect;
-    public GameObject[] playerMenus;
+    public List<GameObject> playerMenus;
 
     public GameObject buttonPrefab;
 
@@ -250,7 +250,7 @@ public class TurnBasedCombatSystem : MonoBehaviour
     {
         PlayerActions(false);
 
-        RandomPlayerUnit().Damage(currentUnit.Attack());
+        GetRandomPlayerUnit().Damage(currentUnit.Attack());
 
         StartCoroutine(WaitEndTurn(1f));
     }
@@ -299,11 +299,26 @@ public class TurnBasedCombatSystem : MonoBehaviour
         target = unit;
     }
 
-    public Unit RandomPlayerUnit()
+    public Unit GetRandomPlayerUnit()
     {
         List<Unit> aliveUnits = new List<Unit>();
 
         foreach (Unit unit in playerUnits)
+        {
+            if (!unit.IsDead())
+            {
+                aliveUnits.Add(unit);
+            }
+        }
+
+        return aliveUnits[Random.Range(0, aliveUnits.Count - 1)];
+    }
+
+    public Unit GetRandomEnemyUnit()
+    {
+        List<Unit> aliveUnits = new List<Unit>();
+
+        foreach (Unit unit in enemyUnits)
         {
             if (!unit.IsDead())
             {
@@ -357,11 +372,9 @@ public class TurnBasedCombatSystem : MonoBehaviour
         }
     }
 
-    public void AbilityMode(int index)
+    public void AllyMode(bool isActive)
     {
-        currentUnit.ActivateAbility(index);
-
-        StartCoroutine(WaitEndTurn(1f));
+        
     }
 
     public void PlayerActions(bool isActive)
@@ -382,6 +395,7 @@ public class TurnBasedCombatSystem : MonoBehaviour
         }
     }
 
+    /*
     private void CreateAbilityButtons()
     {
         foreach (Transform child in playerAbilitySelect.transform)
@@ -413,4 +427,5 @@ public class TurnBasedCombatSystem : MonoBehaviour
             count++;
         }
     }
+    */
 }
