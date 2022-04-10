@@ -28,6 +28,7 @@ public class Unit : MonoBehaviour
     public int currentStamina;
 
     [Header("Damage")]
+    public bool isDefending;
     public int damage;
 
     [Header("Abilities")]
@@ -83,7 +84,7 @@ public class Unit : MonoBehaviour
 
     public int Attack()
     {
-        Debug.Log(unitName + " attacked!");
+        Debug.Log($"{unitName} attacked for {damage} damage!");
         
         if (!IsDead())
         {
@@ -97,6 +98,11 @@ public class Unit : MonoBehaviour
 
     public void Damage(int damage)
     {
+        if (isDefending && damage > 1)
+        {
+            damage = damage / 2;
+        }
+
         int newHealth = currentHealth - damage;
 
         if (newHealth <= 0)
@@ -122,6 +128,11 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public void Defend(bool isActive)
+    {
+        isDefending = isActive;
+    }
+
     public void Heal(int amount)
     {
         int newHealth = currentHealth + amount;
@@ -136,6 +147,22 @@ public class Unit : MonoBehaviour
         }
 
         UpdateSlider(healthSlider, healthText, maxHealth, currentHealth);
+    }
+
+    public void RecoverStamina(int amount)
+    {
+        int newStamina = currentStamina + amount;
+
+        if (newStamina >= maxStamina)
+        {
+            currentStamina = maxStamina;
+        }
+        else
+        {
+            currentStamina += amount;
+        }
+
+        UpdateSlider(staminaSlider, staminaText, maxStamina, currentStamina);
     }
 
     public void ActivateAbility(int index)

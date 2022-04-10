@@ -828,6 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d73fb336bd93a4193b8bc9026d73a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  round: 0
   turn: 0
   canAttack: 0
   currentUnitIndex: 0
@@ -998,7 +999,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 7
-  m_Spacing: -384
+  m_Spacing: -64
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -1534,6 +1535,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2018440602}
+        m_TargetAssemblyTypeName: AbilityHandler, Assembly-CSharp
+        m_MethodName: CreateButtons
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2446,7 +2459,9 @@ MonoBehaviour:
       maxStamina: 10
       damage: 2
       abilities:
+      - {fileID: 11400000, guid: 0645d7a997825d545ac85b61bf529eab, type: 2}
       - {fileID: 11400000, guid: 6b7173b463f07e74b96ba69af52124e4, type: 2}
+      - {fileID: 11400000, guid: 3d8ec34b4933bca4596b34782d6f45e7, type: 2}
     unitSprites:
     - {fileID: 21300000, guid: fd96ea1f348184047b4edf92f45f6462, type: 3}
     - {fileID: 21300000, guid: 78d6117402a6d934c8b8c2813f2dbf0c, type: 3}
@@ -2685,7 +2700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encounters:
-  - enemySprite: {fileID: 21300000, guid: 607ec47c5eb3d2b46b3419a6462ea96b, type: 3}
+  - enemySprite: {fileID: 21300000, guid: f4ef44bf18ebc5e4cb1a143402b7d2d9, type: 3}
     enemyUnitData:
       unitName: Student A
       unitNameColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2693,7 +2708,7 @@ MonoBehaviour:
       maxStamina: 10
       damage: 1
       abilities: []
-  - enemySprite: {fileID: 21300000, guid: 607ec47c5eb3d2b46b3419a6462ea96b, type: 3}
+  - enemySprite: {fileID: 21300000, guid: f4ef44bf18ebc5e4cb1a143402b7d2d9, type: 3}
     enemyUnitData:
       unitName: Student B
       unitNameColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2701,7 +2716,7 @@ MonoBehaviour:
       maxStamina: 5
       damage: 3
       abilities: []
-  - enemySprite: {fileID: 21300000, guid: 607ec47c5eb3d2b46b3419a6462ea96b, type: 3}
+  - enemySprite: {fileID: 21300000, guid: f4ef44bf18ebc5e4cb1a143402b7d2d9, type: 3}
     enemyUnitData:
       unitName: Student C
       unitNameColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2709,7 +2724,7 @@ MonoBehaviour:
       maxStamina: 10
       damage: 2
       abilities: []
-  - enemySprite: {fileID: 21300000, guid: 607ec47c5eb3d2b46b3419a6462ea96b, type: 3}
+  - enemySprite: {fileID: 21300000, guid: f4ef44bf18ebc5e4cb1a143402b7d2d9, type: 3}
     enemyUnitData:
       unitName: Student D
       unitNameColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3324,8 +3339,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 144, y: 0}
-  m_SizeDelta: {x: 256, y: 64}
+  m_AnchoredPosition: {x: 128, y: -256}
+  m_SizeDelta: {x: 192, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1791491022
 MonoBehaviour:
@@ -3673,7 +3688,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1888950867}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 455545241}
+        m_TargetAssemblyTypeName: TurnBasedCombatSystem, Assembly-CSharp
+        m_MethodName: Defend
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1888950867
 MonoBehaviour:
   m_ObjectHideFlags: 0

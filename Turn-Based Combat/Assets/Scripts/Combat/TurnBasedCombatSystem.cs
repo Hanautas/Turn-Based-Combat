@@ -14,6 +14,7 @@ public class TurnBasedCombatSystem : MonoBehaviour
     public static TurnBasedCombatSystem instance;
 
     [Header("Combat System")]
+    public int round;
     public Turn turn;
 
     public bool canAttack;
@@ -131,20 +132,18 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
         if (isGameOver == 2)
         {
-            PlayerActions(false);
-
             StartCoroutine(DisplayGameOver(true));
         }
         else if (isGameOver == 1)
         {
-            PlayerActions(false);
-
             StartCoroutine(DisplayGameOver(false));
         }
     }
 
     private IEnumerator DisplayGameOver(bool isWin)
     {
+        PlayerActions(false);
+
         yield return new WaitForSeconds(1f);
 
         if (isWin)
@@ -236,6 +235,8 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
                 turn = Turn.Player;
 
+                NextRound();
+
                 SelectNextActiveUnit();
             }
         }
@@ -252,11 +253,22 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
         GetRandomPlayerUnit().Damage(currentUnit.Attack());
 
-        StartCoroutine(WaitEndTurn(1f));
+        EndTurn();
     }
 
     public void EndTurn()
     {
+        canAttack = false;
+
+        PlayerActions(false);
+
+        StartCoroutine(WaitEndTurn(1f));
+    }
+
+    private IEnumerator WaitEndTurn(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
         if (IsGameOver() != 0)
         {
             GameOver();
@@ -278,15 +290,25 @@ public class TurnBasedCombatSystem : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitEndTurn(float delay)
+    private void NextRound()
     {
-        canAttack = false;
+        round++;
 
-        PlayerActions(false);
+        foreach (Unit unit in playerUnits)
+        {
+            unit.RecoverStamina(2);
 
-        yield return new WaitForSeconds(delay);
+            if (unit.isDefending)
+            {
+                unit.RecoverStamina(2);
+                unit.Defend(false);
+            }
+        }
 
-        EndTurn();
+        foreach (Unit unit in enemyUnits)
+        {
+            unit.RecoverStamina(1);
+        }
     }
 
     public void SetTarget(int index)
@@ -364,7 +386,7 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
             target.PlayEffect("Damage");
 
-            StartCoroutine(WaitEndTurn(1f));
+            EndTurn();
         }
         else
         {
@@ -375,6 +397,13 @@ public class TurnBasedCombatSystem : MonoBehaviour
     public void AllyMode(bool isActive)
     {
         
+    }
+
+    public void Defend()
+    {
+        currentUnit.Defend(true);
+
+        EndTurn();
     }
 
     public void PlayerActions(bool isActive)

@@ -14,14 +14,15 @@ public class AbilityHandler : MonoBehaviour
 
     public Ability[] abilities;
 
-    void Start()
-    {
-        abilities = TurnBasedCombatSystem.instance.currentUnit.abilities;
-        CreateButtons();
-    }
-
     public void CreateButtons()
     {
+        foreach (Transform child in content)
+        {
+            Destroy(child.gameObject);
+        }
+
+        abilities = TurnBasedCombatSystem.instance.currentUnit.abilities;
+
         foreach (Ability ability in abilities)
         {
             GameObject buttonObject = Instantiate(buttonPrefab) as GameObject;
