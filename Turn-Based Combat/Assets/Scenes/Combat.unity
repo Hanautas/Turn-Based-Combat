@@ -834,6 +834,7 @@ MonoBehaviour:
   currentUnitIndex: 0
   currentUnit: {fileID: 0}
   target: {fileID: 0}
+  currentAbility: {fileID: 0}
   playerUnits: []
   enemyUnits: []
   combatEncounter: {fileID: 1259702039}
@@ -2440,6 +2441,7 @@ MonoBehaviour:
       damage: 2
       abilities:
       - {fileID: 11400000, guid: 371ae9703beac2a4489f03eeff58d91f, type: 2}
+      - {fileID: 11400000, guid: 3a55cbcd42a054744bbb29fe666d6284, type: 2}
     unitSprites:
     - {fileID: 21300000, guid: 115f2435411ea56488724dc7ae0e0d56, type: 3}
     - {fileID: 21300000, guid: 2e68561263558fd4f80a2c7dba93b4e4, type: 3}

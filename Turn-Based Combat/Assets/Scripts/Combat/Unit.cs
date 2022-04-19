@@ -37,6 +37,8 @@ public class Unit : MonoBehaviour
     [Header("UI")]
     public Text unitNameText;
 
+    public Button targetButton;
+
     public SpriteHandler spriteHandler;
 
     public Image unitImage;
@@ -128,6 +130,14 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public void ActivateAbility()
+    {
+        if (TurnBasedCombatSystem.instance.currentAbility != null)
+        {
+            TurnBasedCombatSystem.instance.currentAbility.Activate(this);
+        }
+    }
+
     public void Defend(bool isActive)
     {
         isDefending = isActive;
@@ -165,11 +175,6 @@ public class Unit : MonoBehaviour
         UpdateSlider(staminaSlider, staminaText, maxStamina, currentStamina);
     }
 
-    public void ActivateAbility(int index)
-    {
-        abilities[index].Activate();
-    }
-
     private void Dead()
     {
         currentHealth = 0;
@@ -194,6 +199,16 @@ public class Unit : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void Revive()
+    {
+        isDead = false;
+    }
+
+    public void SetTargetButton(bool isActive)
+    {
+        targetButton.interactable = isActive;
     }
 
     private IEnumerator HideUnit()

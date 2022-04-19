@@ -11,27 +11,31 @@ public class Bite : Ability
     [Range(0, 100)]
     public int hitChance;
 
-    public override void Activate()
+    public override void SetMode()
     {
-        // Attack
+        TurnBasedCombatSystem.instance.AbilityMode(this, Team.Enemy);
     }
 
-    public int GetRandomDamage(int min, int max)
+    public override void Activate(Unit target)
     {
-        return Random.Range(min, max);
-    }
-
-    public bool GetRandomChance(int chance)
-    {
-        int result = Random.Range(0, 100);
-
-        if (hitChance <= result)
+        if (!target.IsDead())
         {
-            return true;
-        }
-        else
-        {
-            return false;
+            TurnBasedCombatSystem.instance.ResetAbilityMode();
+
+            if (Utility.GetRandomChance(hitChance))
+            {
+                int damage = Utility.GetRandomValue(minDamage, maxDamage);
+
+                target.Damage(damage);
+
+                Debug.Log($"{target.unitName} took {damage} damage!");
+            }
+            else
+            {
+                Debug.Log("Missed!");
+            }
+
+            TurnBasedCombatSystem.instance.EndTurn();
         }
     }
 }

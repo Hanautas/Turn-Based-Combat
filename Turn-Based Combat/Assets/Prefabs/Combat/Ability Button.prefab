@@ -138,7 +138,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3735643469008254187}
         m_TargetAssemblyTypeName: AbilityButton, Assembly-CSharp
-        m_MethodName: ActivateAbility
+        m_MethodName: SetAbilityMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

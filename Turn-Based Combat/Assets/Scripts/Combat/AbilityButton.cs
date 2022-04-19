@@ -22,9 +22,9 @@ public class AbilityButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         buttonImage.sprite = ability.icon;
     }
 
-    public void ActivateAbility()
+    public void SetAbilityMode()
     {
-        ability.Activate();
+        ability.SetMode();
     }
 
     public void HidePlayerActions()

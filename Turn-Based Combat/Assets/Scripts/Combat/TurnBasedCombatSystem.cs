@@ -22,7 +22,7 @@ public class TurnBasedCombatSystem : MonoBehaviour
     public int currentUnitIndex;
     public Unit currentUnit;
 
-    public Unit target;
+    public Ability currentAbility;
 
     public List<Unit> playerUnits;
     public List<Unit> enemyUnits;
@@ -119,9 +119,11 @@ public class TurnBasedCombatSystem : MonoBehaviour
         enemyUnit.unitImage = spriteHandler.entityImage;
         enemyUnit.animator = spriteHandler.animator;
 
-        Button enemyButtonComponent = enemyBox.transform.Find("Button").GetComponent<Button>();
-        enemyButtonComponent.onClick.AddListener(() => SetTarget(enemyUnit));
-        enemyButtonComponent.onClick.AddListener(() => AttackTarget());
+        Button enemyButtonComponent = enemyBox.transform.Find("Target Button").GetComponent<Button>();
+        enemyButtonComponent.onClick.AddListener(() => AttackTarget(enemyUnit));
+        enemyButtonComponent.onClick.AddListener(() => enemyUnit.ActivateAbility());
+
+        enemyUnit.targetButton = enemyButtonComponent;
 
         enemyUnits.Add(enemyUnit);
     }
@@ -311,16 +313,6 @@ public class TurnBasedCombatSystem : MonoBehaviour
         }
     }
 
-    public void SetTarget(int index)
-    {
-        target = enemyUnits[index];
-    }
-
-    public void SetTarget(Unit unit)
-    {
-        target = unit;
-    }
-
     public Unit GetRandomPlayerUnit()
     {
         List<Unit> aliveUnits = new List<Unit>();
@@ -359,7 +351,11 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
             foreach (Unit unit in enemyUnits)
             {
-                unit.PlayEffect("Select");
+                if (!unit.IsDead())
+                {
+                    unit.SetTargetButton(true);
+                    unit.PlayEffect("Select");
+                }
             }
         }
         else if (!isActive)
@@ -368,12 +364,16 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
             foreach (Unit unit in enemyUnits)
             {
-                unit.PlayEffect("Hide");
+                if (!unit.IsDead())
+                {
+                    unit.SetTargetButton(false);
+                    unit.PlayEffect("Hide");
+                }
             }
         }
     }
 
-    public void AttackTarget()
+    public void AttackTarget(Unit target)
     {
         if (canAttack)
         {
@@ -394,9 +394,39 @@ public class TurnBasedCombatSystem : MonoBehaviour
         }
     }
 
-    public void AllyMode(bool isActive)
+    public void AbilityMode(Ability ability, Team team)
     {
-        
+        currentAbility = ability;
+
+        if (team == Team.Player)
+        {
+            foreach (Unit unit in playerUnits)
+            {
+                unit.SetTargetButton(true);
+            }
+        }
+        else if (team == Team.Enemy)
+        {
+            foreach (Unit unit in enemyUnits)
+            {
+                unit.SetTargetButton(true);
+            }
+        }
+    }
+
+    public void ResetAbilityMode()
+    {
+        currentAbility = null;
+
+        foreach (Unit unit in playerUnits)
+        {
+            unit.SetTargetButton(false);
+        }
+
+        foreach (Unit unit in playerUnits)
+        {
+            unit.SetTargetButton(false);
+        }
     }
 
     public void Defend()

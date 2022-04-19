@@ -16,6 +16,8 @@ public class AbilityHandler : MonoBehaviour
 
     public void CreateButtons()
     {
+        DisplayText("");
+
         foreach (Transform child in content)
         {
             Destroy(child.gameObject);

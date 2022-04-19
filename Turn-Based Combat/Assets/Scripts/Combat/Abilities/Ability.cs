@@ -12,7 +12,12 @@ public class Ability : ScriptableObject
     [TextArea(3, 5)]
     public string abilityDescription;
 
-    public virtual void Activate()
+    public virtual void SetMode()
+    {
+        Debug.Log("No Function!");
+    }
+
+    public virtual void Activate(Unit target)
     {
         Debug.Log("No Function!");
     }

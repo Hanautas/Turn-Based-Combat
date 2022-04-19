@@ -5,8 +5,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Growl : Ability
 {
-    public override void Activate()
+    public override void Activate(Unit target)
     {
-        // Attack
+        if (!target.IsDead())
+        {
+            TurnBasedCombatSystem.instance.ResetAbilityMode();
+        }
     }
 }
