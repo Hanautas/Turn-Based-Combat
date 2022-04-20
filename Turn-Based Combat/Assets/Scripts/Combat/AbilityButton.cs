@@ -27,11 +27,6 @@ public class AbilityButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         ability.SetMode();
     }
 
-    public void HidePlayerActions()
-    {
-        TurnBasedCombatSystem.instance.PlayerActions(false);
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         abilityHandler.DisplayText($"{ability.abilityName} - {ability.abilityDescription}");

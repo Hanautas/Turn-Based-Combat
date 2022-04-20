@@ -45,6 +45,7 @@ public class TurnBasedCombatSystem : MonoBehaviour
     public GameObject playerActions;
     public GameObject playerActionSelect;
     public GameObject playerAbilitySelect;
+    public GameObject cancelButton;
     public List<GameObject> playerMenus;
 
     public GameObject buttonPrefab;
@@ -354,7 +355,6 @@ public class TurnBasedCombatSystem : MonoBehaviour
                 if (!unit.IsDead())
                 {
                     unit.SetTargetButton(true);
-                    unit.PlayEffect("Select");
                 }
             }
         }
@@ -367,7 +367,6 @@ public class TurnBasedCombatSystem : MonoBehaviour
                 if (!unit.IsDead())
                 {
                     unit.SetTargetButton(false);
-                    unit.PlayEffect("Hide");
                 }
             }
         }
@@ -377,14 +376,9 @@ public class TurnBasedCombatSystem : MonoBehaviour
     {
         if (canAttack)
         {
-            foreach (Unit unit in enemyUnits)
-            {
-                unit.PlayEffect("Hide");
-            }
+            AttackMode(false);
 
             target.Damage(currentUnit.Attack());
-
-            target.PlayEffect("Damage");
 
             EndTurn();
         }
@@ -397,6 +391,9 @@ public class TurnBasedCombatSystem : MonoBehaviour
     public void AbilityMode(Ability ability, Team team)
     {
         currentAbility = ability;
+
+        playerAbilitySelect.SetActive(false);
+        cancelButton.SetActive(true);
 
         if (team == Team.Player)
         {
@@ -423,7 +420,7 @@ public class TurnBasedCombatSystem : MonoBehaviour
             unit.SetTargetButton(false);
         }
 
-        foreach (Unit unit in playerUnits)
+        foreach (Unit unit in enemyUnits)
         {
             unit.SetTargetButton(false);
         }
@@ -453,38 +450,4 @@ public class TurnBasedCombatSystem : MonoBehaviour
             playerActions.SetActive(false);
         }
     }
-
-    /*
-    private void CreateAbilityButtons()
-    {
-        foreach (Transform child in playerAbilitySelect.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        GameObject backButtonObject = Instantiate(buttonPrefab) as GameObject;
-        backButtonObject.transform.SetParent(playerAbilitySelect.transform, false);
-
-        backButtonObject.transform.Find("Text").GetComponent<Text>().text = "Back";
-        
-        Button backButtonComponent = backButtonObject.GetComponent<Button>();
-        backButtonComponent.onClick.AddListener(() => playerActionSelect.SetActive(true));
-        backButtonComponent.onClick.AddListener(() => playerAbilitySelect.SetActive(false));
-
-        int count = 0;
-
-        foreach (Ability ability in currentUnit.abilities)
-        {
-            GameObject buttonObject = Instantiate(buttonPrefab) as GameObject;
-            buttonObject.transform.SetParent(playerAbilitySelect.transform, false);
-
-            buttonObject.transform.Find("Text").GetComponent<Text>().text = ability.abilityName;
-            
-            Button buttonComponent = buttonObject.GetComponent<Button>();
-            buttonComponent.onClick.AddListener(() => AbilityMode(count));
-
-            count++;
-        }
-    }
-    */
 }

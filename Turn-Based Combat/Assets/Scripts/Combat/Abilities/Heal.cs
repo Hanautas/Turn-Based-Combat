@@ -20,7 +20,7 @@ public class Heal : Ability
 
             target.Heal(amount);
 
-            Debug.Log($"Healed {target.unitName} for {amount} health!");
+            CombatLog.instance.CreateLog($"Healed {target.unitName} for {amount} health!");
 
             TurnBasedCombatSystem.instance.EndTurn();
         }

@@ -86,7 +86,7 @@ public class Unit : MonoBehaviour
 
     public int Attack()
     {
-        Debug.Log($"{unitName} attacked for {damage} damage!");
+        CombatLog.instance.CreateLog($"{unitName} attacked for {damage} damage!");
         
         if (!IsDead())
         {
@@ -127,6 +127,8 @@ public class Unit : MonoBehaviour
         else if (team == Team.Enemy)
         {
             animator.SetTrigger("Damage");
+
+            PlayEffect("Damage");
         }
     }
 
@@ -157,6 +159,11 @@ public class Unit : MonoBehaviour
         }
 
         UpdateSlider(healthSlider, healthText, maxHealth, currentHealth);
+
+        if (team == Team.Player)
+        {
+            SetUnitSprite();
+        }
     }
 
     public void RecoverStamina(int amount)
@@ -209,6 +216,15 @@ public class Unit : MonoBehaviour
     public void SetTargetButton(bool isActive)
     {
         targetButton.interactable = isActive;
+
+        if (isActive)
+        {
+            PlayEffect("Select");
+        }
+        else if (!isActive)
+        {
+            PlayEffect("Hide");
+        }
     }
 
     private IEnumerator HideUnit()
@@ -259,7 +275,7 @@ public class Unit : MonoBehaviour
 
     public void PlayEffect(string trigger)
     {
-        if (team == Team.Enemy)
+        if (team == Team.Enemy && !IsDead())
         {
             spriteHandler.effectsAnimator.Play(trigger);
         }

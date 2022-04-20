@@ -62,27 +62,25 @@ public class Fury : Ability
 
         target.Damage(damage);
 
-        Debug.Log($"{target.unitName} took {damage} damage!");
-
-        yield return new WaitForSeconds(0.5f);
+        CombatLog.instance.CreateLog($"{target.unitName} took {damage} damage!");
 
         for (int i = 0; i < hits; i++)
         {
+            yield return new WaitForSeconds(0.5f);
+
             if (Utility.GetRandomChance(hitChance))
             {
-                yield return new WaitForSeconds(0.5f);
-
                 int damage_2 = Utility.GetRandomValue(minDamage, maxDamage);
 
                 Unit target_2 = TurnBasedCombatSystem.instance.GetRandomEnemyUnit();
 
                 target_2.Damage(damage_2);
 
-                Debug.Log($"{target_2.unitName} took {damage_2} damage!");
+                CombatLog.instance.CreateLog($"{target_2.unitName} took {damage_2} damage!");
             }
             else
             {
-                Debug.Log("Missed!");
+                CombatLog.instance.CreateLog("Missed!");
             }
         }
 

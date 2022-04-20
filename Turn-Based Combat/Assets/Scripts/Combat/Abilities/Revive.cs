@@ -21,7 +21,7 @@ public class Revive : Ability
             target.Revive();
             target.Heal(amount);
 
-            Debug.Log($"Revived {target.unitName} and healed for {amount} health!");
+            CombatLog.instance.CreateLog($"Revived {target.unitName} and healed for {amount} health!");
 
             TurnBasedCombatSystem.instance.EndTurn();
         }

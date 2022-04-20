@@ -28,11 +28,11 @@ public class Bite : Ability
 
                 target.Damage(damage);
 
-                Debug.Log($"{target.unitName} took {damage} damage!");
+                CombatLog.instance.CreateLog($"{target.unitName} took {damage} damage!");
             }
             else
             {
-                Debug.Log("Missed!");
+                CombatLog.instance.CreateLog("Missed!");
             }
 
             TurnBasedCombatSystem.instance.EndTurn();
