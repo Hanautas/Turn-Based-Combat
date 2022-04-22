@@ -848,8 +848,8 @@ MonoBehaviour:
   playerAbilitySelect: {fileID: 2018440598}
   cancelButton: {fileID: 1791491020}
   playerMenus:
-  - {fileID: 1791491020}
   - {fileID: 2018440598}
+  - {fileID: 1791491020}
   buttonPrefab: {fileID: 2685390339958393557, guid: da40c657e32a4914d9aa62a99512ccc2, type: 3}
   winScreen: {fileID: 272308861}
   loseScreen: {fileID: 704802223}
@@ -1658,7 +1658,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &786321663
 GameObject:
@@ -2520,7 +2520,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040188440
 GameObject:
@@ -2702,39 +2702,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cc3b15e4e62bd41889c91e246f3056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  encounters:
-  - enemySprite: {fileID: 21300000, guid: f4ef44bf18ebc5e4cb1a143402b7d2d9, type: 3}
-    enemyUnitData:
-      unitName: Student A
-      unitNameColor: {r: 1, g: 1, b: 1, a: 1}
-      maxHealth: 10
-      maxStamina: 10
-      damage: 1
-      abilities: []
-  - enemySprite: {fileID: 21300000, guid: f4ef44bf18ebc5e4cb1a143402b7d2d9, type: 3}
-    enemyUnitData:
-      unitName: Student B
-      unitNameColor: {r: 1, g: 1, b: 1, a: 1}
-      maxHealth: 16
-      maxStamina: 5
-      damage: 3
-      abilities: []
-  - enemySprite: {fileID: 21300000, guid: f4ef44bf18ebc5e4cb1a143402b7d2d9, type: 3}
-    enemyUnitData:
-      unitName: Student C
-      unitNameColor: {r: 1, g: 1, b: 1, a: 1}
-      maxHealth: 12
-      maxStamina: 10
-      damage: 2
-      abilities: []
-  - enemySprite: {fileID: 21300000, guid: f4ef44bf18ebc5e4cb1a143402b7d2d9, type: 3}
-    enemyUnitData:
-      unitName: Student D
-      unitNameColor: {r: 1, g: 1, b: 1, a: 1}
-      maxHealth: 10
-      maxStamina: 10
-      damage: 1
-      abilities: []
+  entities:
+  - {fileID: 11400000, guid: de2602a7632ced74b86bc5ba11683ab7, type: 2}
+  - {fileID: 11400000, guid: de2602a7632ced74b86bc5ba11683ab7, type: 2}
+  - {fileID: 11400000, guid: de2602a7632ced74b86bc5ba11683ab7, type: 2}
+  - {fileID: 11400000, guid: de2602a7632ced74b86bc5ba11683ab7, type: 2}
 --- !u!4 &1259702040
 Transform:
   m_ObjectHideFlags: 0

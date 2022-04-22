@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class CombatEncounter : MonoBehaviour
 {
-    public List<Encounter> encounters;
+    public List<Entity> entities;
 
     void Reset()
     {
-        encounters = new List<Encounter>()
+        entities = new List<Entity>()
         {
-            new Encounter()
+            new Entity()
         };
     }
 
@@ -19,11 +19,4 @@ public class CombatEncounter : MonoBehaviour
     {
         //GameManager.instance.LoadScene("Combat");
     }
-}
-
-[System.Serializable]
-public class Encounter
-{
-    public Sprite enemySprite;
-    public UnitData enemyUnitData;
 }

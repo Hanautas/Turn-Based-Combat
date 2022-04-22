@@ -11,6 +11,8 @@ public class Bite : Ability
     [Range(0, 100)]
     public int hitChance;
 
+    public StatusEffect statusEffect;
+
     public override void SetMode()
     {
         TurnBasedCombatSystem.instance.AbilityMode(this, Team.Enemy);
@@ -29,6 +31,8 @@ public class Bite : Ability
                 target.Damage(damage);
 
                 CombatLog.instance.CreateLog($"{target.unitName} took {damage} damage!");
+
+                target.AddStatusEffect(statusEffect);
             }
             else
             {

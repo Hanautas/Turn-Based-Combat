@@ -224,7 +224,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8451064026862567662}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Unit, Assembly-CSharp
         m_MethodName: ActivateAbility
         m_Mode: 1
@@ -1507,7 +1507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8451064026862567663}
   - component: {fileID: 8451064026862567656}
-  - component: {fileID: 8451064026862567662}
+  - component: {fileID: -1735202072245966386}
   m_Layer: 5
   m_Name: Player Unit
   m_TagString: Untagged
@@ -1544,7 +1544,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8451064026862567660}
   m_CullTransparentMesh: 1
---- !u!114 &8451064026862567662
+--- !u!114 &-1735202072245966386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1557,7 +1557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  unitName: 0
+  unitName: 
   unitNameColor: {r: 1, g: 1, b: 1, a: 1}
   isDead: 0
   maxHealth: 0
@@ -1571,11 +1571,7 @@ MonoBehaviour:
   targetButton: {fileID: 1978707973675193092}
   spriteHandler: {fileID: 0}
   unitImage: {fileID: 8451064025008247643}
-  unitSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  unitSprites: []
   healthText: {fileID: 8451064025586308938}
   healthSlider: {fileID: 8451064025076397390}
   staminaText: {fileID: 8451064025854718681}

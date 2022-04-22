@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum Team
-{
-    Player,
-    Enemy
-}
-
 public class Unit : MonoBehaviour
 {
     [Header("Team")]
@@ -33,6 +27,9 @@ public class Unit : MonoBehaviour
 
     [Header("Abilities")]
     public Ability[] abilities;
+
+    [Header("Status Effects")]
+    public List<StatusEffect> statusEffects;
 
     [Header("UI")]
     public Text unitNameText;
@@ -211,6 +208,21 @@ public class Unit : MonoBehaviour
     public void Revive()
     {
         isDead = false;
+    }
+
+    public void AddStatusEffect(StatusEffect statusEffect)
+    {
+        statusEffects.Add(statusEffect);
+    }
+
+    public void CheckStatusEffects()
+    {
+        for (int i = statusEffects.Count - 1; i >= 0; i--)
+        {
+            statusEffects[i].Activate(this);
+            
+            statusEffects.RemoveAt(i);
+        }
     }
 
     public void SetTargetButton(bool isActive)

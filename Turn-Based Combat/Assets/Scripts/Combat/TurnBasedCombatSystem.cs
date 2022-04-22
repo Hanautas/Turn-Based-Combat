@@ -85,9 +85,9 @@ public class TurnBasedCombatSystem : MonoBehaviour
             }
         }
 
-        foreach (Encounter encounter in combatEncounter.encounters)
+        foreach (Entity entity in combatEncounter.entities)
         {
-            CreateEnemyUnits(encounter.enemyUnitData, encounter.enemySprite);
+            CreateEnemyUnits(entity.unitData, entity.unitSprite);
         }
     }
 
@@ -281,6 +281,8 @@ public class TurnBasedCombatSystem : MonoBehaviour
             PlayerActions(false);
 
             SelectNextActiveUnit();
+
+            currentUnit.CheckStatusEffects();
 
             if (turn == Turn.Player)
             {
