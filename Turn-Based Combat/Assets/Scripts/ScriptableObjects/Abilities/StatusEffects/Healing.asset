@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eae0a9688530fd41b0bb6d174206af3, type: 3}
-  m_Name: Bleed
+  m_Script: {fileID: 11500000, guid: 61721af80d28fcd41b96cce992858151, type: 3}
+  m_Name: Healing
   m_EditorClassIdentifier: 
-  duration: 3
-  damage: 1
+  statusEffectName: Healing
+  amount: 1

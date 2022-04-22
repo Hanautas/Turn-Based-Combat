@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Growl : Ability
 {
+    public StatusEffect statusEffect;
+
     public override void SetMode()
     {
         TurnBasedCombatSystem.instance.AbilityMode(this, Team.Enemy);
@@ -15,6 +17,9 @@ public class Growl : Ability
         if (!target.IsDead())
         {
             TurnBasedCombatSystem.instance.ResetAbilityMode();
+            TurnBasedCombatSystem.instance.currentUnit.SetStamina(cost);
+
+            target.AddStatusEffect(statusEffect);
 
             TurnBasedCombatSystem.instance.EndTurn();
         }

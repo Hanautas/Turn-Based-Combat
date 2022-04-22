@@ -51,6 +51,7 @@ public class Fury : Ability
         if (!target.IsDead())
         {
             TurnBasedCombatSystem.instance.ResetAbilityMode();
+            TurnBasedCombatSystem.instance.currentUnit.SetStamina(cost);
 
             coroutineStarter.StartCoroutine(StartAttack(target));
         }

@@ -17,10 +17,11 @@ public class Heal : Ability
         if (!target.IsDead())
         {
             TurnBasedCombatSystem.instance.ResetAbilityMode();
+            TurnBasedCombatSystem.instance.currentUnit.SetStamina(cost);
 
             target.Heal(amount);
 
-            CombatLog.instance.CreateLog($"Healed {target.unitName} for {amount} health!");
+            CombatLog.instance.CreateLog($"{target.unitName} healed for {amount} health!");
 
             TurnBasedCombatSystem.instance.EndTurn();
         }

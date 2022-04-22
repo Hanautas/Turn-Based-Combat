@@ -24,6 +24,8 @@ public class CombatLog : MonoBehaviour
         Text textComponent = textObject.GetComponent<Text>();
         textComponent.text = text;
 
+        Debug.Log(text);
+
         StartCoroutine(DestroyLog(textObject, 4f));
     }
 

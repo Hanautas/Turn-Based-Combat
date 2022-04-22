@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffca8289069bbd4419a06190585a3a56, type: 3}
   m_Name: Growl
   m_EditorClassIdentifier: 
-  cost: 2
+  cost: -4
   icon: {fileID: 0}
   abilityName: Growl
   abilityDescription: Growl at the target to intimidate. Prevents the target from
     making an action for 1 round.
+  statusEffect: {fileID: 11400000, guid: 41a7d177ac5d57a409b48d7781a88b54, type: 2}

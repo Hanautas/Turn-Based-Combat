@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2015251d01ce84b4aaea2b87def6e6fd, type: 3}
-  m_Name: Heal
+  m_Script: {fileID: 11500000, guid: 1eae0a9688530fd41b0bb6d174206af3, type: 3}
+  m_Name: Bleed
   m_EditorClassIdentifier: 
-  cost: -3
-  icon: {fileID: 21300000, guid: 62c8527948b9b85419a1883fdba69b50, type: 3}
-  abilityName: Bandaid
-  abilityDescription: Heals the allied target by 3 points.
-  amount: 3
+  statusEffectName: Bleed
+  damage: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8d45a5fb0d4fb4ab45b8295026d307, type: 3}
   m_Name: Revive
   m_EditorClassIdentifier: 
-  cost: 10
+  cost: -10
   icon: {fileID: 21300000, guid: 62c8527948b9b85419a1883fdba69b50, type: 3}
   abilityName: Revive
   abilityDescription: Revives the allied target and heals by 5 points.

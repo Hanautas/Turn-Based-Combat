@@ -25,10 +25,8 @@ public class Unit : MonoBehaviour
     public bool isDefending;
     public int damage;
 
-    [Header("Abilities")]
     public Ability[] abilities;
 
-    [Header("Status Effects")]
     public List<StatusEffect> statusEffects;
 
     [Header("UI")]
@@ -129,19 +127,6 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public void ActivateAbility()
-    {
-        if (TurnBasedCombatSystem.instance.currentAbility != null)
-        {
-            TurnBasedCombatSystem.instance.currentAbility.Activate(this);
-        }
-    }
-
-    public void Defend(bool isActive)
-    {
-        isDefending = isActive;
-    }
-
     public void Heal(int amount)
     {
         int newHealth = currentHealth + amount;
@@ -161,22 +146,6 @@ public class Unit : MonoBehaviour
         {
             SetUnitSprite();
         }
-    }
-
-    public void RecoverStamina(int amount)
-    {
-        int newStamina = currentStamina + amount;
-
-        if (newStamina >= maxStamina)
-        {
-            currentStamina = maxStamina;
-        }
-        else
-        {
-            currentStamina += amount;
-        }
-
-        UpdateSlider(staminaSlider, staminaText, maxStamina, currentStamina);
     }
 
     private void Dead()
@@ -208,6 +177,51 @@ public class Unit : MonoBehaviour
     public void Revive()
     {
         isDead = false;
+    }
+
+    public void SetStamina(int amount)
+    {
+        int newStamina = currentStamina + amount;
+
+        if (newStamina >= maxStamina)
+        {
+            currentStamina = maxStamina;
+        }
+        else if (newStamina <= 0)
+        {
+            currentStamina = 0;
+        }
+        else
+        {
+            currentStamina += amount;
+        }
+
+        UpdateSlider(staminaSlider, staminaText, maxStamina, currentStamina);
+    }
+
+    public bool CheckStaminaCost(int cost)
+    {
+        if (currentStamina >= Mathf.Abs(cost))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void Defend(bool isActive)
+    {
+        isDefending = isActive;
+    }
+
+    public void ActivateAbility()
+    {
+        if (TurnBasedCombatSystem.instance.currentAbility != null)
+        {
+            TurnBasedCombatSystem.instance.currentAbility.Activate(this);
+        }
     }
 
     public void AddStatusEffect(StatusEffect statusEffect)

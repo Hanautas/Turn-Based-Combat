@@ -301,18 +301,18 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
         foreach (Unit unit in playerUnits)
         {
-            unit.RecoverStamina(2);
+            unit.SetStamina(2);
 
             if (unit.isDefending)
             {
-                unit.RecoverStamina(2);
+                unit.SetStamina(2);
                 unit.Defend(false);
             }
         }
 
         foreach (Unit unit in enemyUnits)
         {
-            unit.RecoverStamina(1);
+            unit.SetStamina(2);
         }
     }
 
@@ -426,6 +426,11 @@ public class TurnBasedCombatSystem : MonoBehaviour
         {
             unit.SetTargetButton(false);
         }
+    }
+
+    public void SetCurrentUnitStamina(int amount)
+    {
+        currentUnit.SetStamina(amount);
     }
 
     public void Defend()

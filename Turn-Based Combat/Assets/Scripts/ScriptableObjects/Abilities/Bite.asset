@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01044b0978f1eca44b1888fc8c49e418, type: 3}
   m_Name: Bite
   m_EditorClassIdentifier: 
-  cost: 5
+  cost: -5
   icon: {fileID: 0}
   abilityName: Bite
-  abilityDescription: Bite the target for 5-8 damage. Has a 60% chance to hit. Adds
+  abilityDescription: Bite the target for 4-6 damage. Has a 60% chance to hit. Adds
     bleed effect to the target.
   maxDamage: 4
-  minDamage: 8
+  minDamage: 6
   hitChance: 60
   statusEffect: {fileID: 11400000, guid: a2f49e7ae5c69094bbf2c84219c702f7, type: 2}

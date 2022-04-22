@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc258420cb6dec45a7b408cd85ffd39, type: 3}
   m_Name: Fury
   m_EditorClassIdentifier: 
-  cost: 4
+  cost: -3
   icon: {fileID: 0}
   abilityName: Fury
-  abilityDescription: Hit a target for 3-6 damage. Has a 45% chance of hitting max
+  abilityDescription: Hit a target for 2-4 damage. Has a 45% chance of hitting max
     2 additional random targets.
-  maxDamage: 3
-  minDamage: 6
+  maxDamage: 2
+  minDamage: 4
   hits: 2
   hitChance: 45
