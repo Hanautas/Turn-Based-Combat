@@ -2436,10 +2436,10 @@ MonoBehaviour:
     faction: 0
     unitData:
       unitName: Lilla
-      unitNameColor: {r: 0.2627451, g: 0.14901961, b: 0.4117647, a: 1}
-      maxHealth: 10
+      unitNameColor: {r: 0.4117647, g: 0.08627451, b: 0.8352941, a: 1}
+      maxHealth: 12
       maxStamina: 10
-      damage: 2
+      weapon: {fileID: 11400000, guid: f6efe633fccde9642bbb3a83106c3e32, type: 2}
       abilities:
       - {fileID: 11400000, guid: 371ae9703beac2a4489f03eeff58d91f, type: 2}
       - {fileID: 11400000, guid: 3a55cbcd42a054744bbb29fe666d6284, type: 2}
@@ -2458,9 +2458,9 @@ MonoBehaviour:
     unitData:
       unitName: Hana
       unitNameColor: {r: 0.99607843, g: 0.2627451, b: 0.8235294, a: 1}
-      maxHealth: 10
-      maxStamina: 10
-      damage: 2
+      maxHealth: 20
+      maxStamina: 16
+      weapon: {fileID: 11400000, guid: c213de0eecbfacf4eb1d8b88bf4312c5, type: 2}
       abilities:
       - {fileID: 11400000, guid: 0645d7a997825d545ac85b61bf529eab, type: 2}
       - {fileID: 11400000, guid: 6b7173b463f07e74b96ba69af52124e4, type: 2}
@@ -2479,10 +2479,10 @@ MonoBehaviour:
     faction: 1
     unitData:
       unitName: Kazie
-      unitNameColor: {r: 0, g: 0.29411766, b: 0.33333334, a: 1}
-      maxHealth: 10
-      maxStamina: 10
-      damage: 2
+      unitNameColor: {r: 0, g: 0.6627451, b: 0.7490196, a: 1}
+      maxHealth: 18
+      maxStamina: 12
+      weapon: {fileID: 11400000, guid: b4dd7ceff5df5fc4ca1bd99713b495de, type: 2}
       abilities: []
     unitSprites:
     - {fileID: 21300000, guid: fd96ea1f348184047b4edf92f45f6462, type: 3}
@@ -2499,9 +2499,9 @@ MonoBehaviour:
     unitData:
       unitName: Himi
       unitNameColor: {r: 0, g: 1, b: 0, a: 1}
-      maxHealth: 10
-      maxStamina: 10
-      damage: 2
+      maxHealth: 16
+      maxStamina: 20
+      weapon: {fileID: 11400000, guid: ad5d95de13e6b9141aa644ca5a0eadb9, type: 2}
       abilities: []
     unitSprites:
     - {fileID: 21300000, guid: fd96ea1f348184047b4edf92f45f6462, type: 3}

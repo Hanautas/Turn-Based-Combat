@@ -16,7 +16,7 @@ public class UnitData
     public int maxStamina;
 
     [Header("Damage")]
-    public int damage;
+    public Weapon weapon;
 
     [Header("Abilities")]
     public Ability[] abilities;

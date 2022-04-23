@@ -23,7 +23,7 @@ public class Unit : MonoBehaviour
 
     [Header("Damage")]
     public bool isDefending;
-    public int damage;
+    public Weapon weapon;
 
     public Ability[] abilities;
 
@@ -75,16 +75,18 @@ public class Unit : MonoBehaviour
         unitNameColor = data.unitNameColor;
         maxHealth = data.maxHealth;
         maxStamina = data.maxStamina;
-        damage = data.damage;
+        weapon = data.weapon;
         abilities = data.abilities;
     }
 
     public int Attack()
-    {
-        CombatLog.instance.CreateLog($"{unitName} attacked for {damage} damage!");
-        
+    {        
         if (!IsDead())
         {
+            int damage = weapon.Damage();
+
+            CombatLog.instance.CreateLog($"{unitName} attacked for {damage} damage!");
+
             return damage;
         }
         else
@@ -104,7 +106,7 @@ public class Unit : MonoBehaviour
 
         if (newHealth <= 0)
         {
-            Dead();
+            StartCoroutine(Dead());
         }
         else
         {
@@ -148,7 +150,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private void Dead()
+    private IEnumerator Dead()
     {
         currentHealth = 0;
 
@@ -156,6 +158,8 @@ public class Unit : MonoBehaviour
 
         if (team == Team.Enemy)
         {
+            yield return new WaitForSeconds(0.5f);
+
             animator.SetBool("IsDead", true);
 
             StartCoroutine(HideUnit());
@@ -214,6 +218,11 @@ public class Unit : MonoBehaviour
     public void Defend(bool isActive)
     {
         isDefending = isActive;
+
+        if (isDefending)
+        {
+            CombatLog.instance.CreateLog($"{unitName} is defending!");
+        }
     }
 
     public void ActivateAbility()

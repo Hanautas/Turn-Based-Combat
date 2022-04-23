@@ -15,10 +15,10 @@ MonoBehaviour:
   unitSprite: {fileID: 21300000, guid: f4ef44bf18ebc5e4cb1a143402b7d2d9, type: 3}
   unitData:
     unitName: Student
-    unitNameColor: {r: 1, g: 1, b: 1, a: 1}
-    maxHealth: 10
-    maxStamina: 10
-    damage: 2
+    unitNameColor: {r: 1, g: 0, b: 0, a: 1}
+    maxHealth: 16
+    maxStamina: 12
+    weapon: {fileID: 11400000, guid: c213de0eecbfacf4eb1d8b88bf4312c5, type: 2}
     abilities:
     - {fileID: 11400000, guid: 0645d7a997825d545ac85b61bf529eab, type: 2}
     - {fileID: 11400000, guid: 3d8ec34b4933bca4596b34782d6f45e7, type: 2}

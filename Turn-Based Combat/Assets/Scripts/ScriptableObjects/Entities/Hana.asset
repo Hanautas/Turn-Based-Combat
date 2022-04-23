@@ -18,7 +18,7 @@ MonoBehaviour:
     unitNameColor: {r: 0.99607843, g: 0.2627451, b: 0.8235294, a: 1}
     maxHealth: 100
     maxStamina: 100
-    damage: 10
+    weapon: {fileID: 11400000, guid: c213de0eecbfacf4eb1d8b88bf4312c5, type: 2}
     abilities:
     - {fileID: 11400000, guid: 3d8ec34b4933bca4596b34782d6f45e7, type: 2}
     - {fileID: 11400000, guid: 6b7173b463f07e74b96ba69af52124e4, type: 2}
