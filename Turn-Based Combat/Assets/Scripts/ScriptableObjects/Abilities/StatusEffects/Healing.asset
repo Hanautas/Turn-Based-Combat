@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Healing
   m_EditorClassIdentifier: 
   statusEffectName: Healing
+  duration: 3
   amount: 1

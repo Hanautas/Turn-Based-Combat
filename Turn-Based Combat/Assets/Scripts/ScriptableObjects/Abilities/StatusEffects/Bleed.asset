@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Bleed
   m_EditorClassIdentifier: 
   statusEffectName: Bleed
+  duration: 3
   damage: 1

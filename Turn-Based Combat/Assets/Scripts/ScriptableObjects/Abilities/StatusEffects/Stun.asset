@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Stun
   m_EditorClassIdentifier: 
   statusEffectName: Stun
-  rounds: 1
+  duration: 1

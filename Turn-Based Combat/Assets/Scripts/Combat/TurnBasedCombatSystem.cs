@@ -284,13 +284,20 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
             currentUnit.CheckStatusEffects();
 
-            if (turn == Turn.Player)
+            if (!currentUnit.IsDead())
             {
-                PlayerTurn();
+                if (turn == Turn.Player)
+                {
+                    PlayerTurn();
+                }
+                else if (turn == Turn.Enemy)
+                {
+                    EnemyTurn();
+                }
             }
-            else if (turn == Turn.Enemy)
+            else
             {
-                EnemyTurn();
+                EndTurn();
             }
         }
     }

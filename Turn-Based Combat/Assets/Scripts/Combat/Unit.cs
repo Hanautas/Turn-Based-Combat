@@ -27,7 +27,7 @@ public class Unit : MonoBehaviour
 
     public Ability[] abilities;
 
-    public List<StatusEffect> statusEffects;
+    public List<StatusEffectObject> statusEffects;
 
     [Header("UI")]
     public Text unitNameText;
@@ -112,6 +112,8 @@ public class Unit : MonoBehaviour
         {
             currentHealth -= damage;
         }
+
+        AudioManager.instance.PlaySound(AudioManager.instance.damageClip);
 
         UpdateSlider(healthSlider, healthText, maxHealth, currentHealth);
 
@@ -235,16 +237,21 @@ public class Unit : MonoBehaviour
 
     public void AddStatusEffect(StatusEffect statusEffect)
     {
-        statusEffects.Add(statusEffect);
+        statusEffects.Add(new StatusEffectObject(statusEffect));
     }
 
     public void CheckStatusEffects()
     {
         for (int i = statusEffects.Count - 1; i >= 0; i--)
         {
-            statusEffects[i].Activate(this);
-            
-            statusEffects.RemoveAt(i);
+            if (statusEffects[i].duration > 0)
+            {
+                statusEffects[i].Activate(this);
+            }
+            else
+            {
+                statusEffects.RemoveAt(i);
+            }
         }
     }
 

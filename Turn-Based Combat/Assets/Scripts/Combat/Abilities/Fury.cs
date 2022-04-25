@@ -25,8 +25,10 @@ public class Fury : Ability
             {
                 return coroutineStarterWorker;
             }
-
-            return InitializeCoroutineStarter();
+            else
+            {
+                return InitializeCoroutineStarter();
+            }
         }
 
         set{}
