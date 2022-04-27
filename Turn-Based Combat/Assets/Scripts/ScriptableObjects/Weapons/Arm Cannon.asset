@@ -15,3 +15,4 @@ MonoBehaviour:
   weaponName: Arm Cannon
   maxDamage: 5
   minDamage: 4
+  soundEffect: {fileID: 8300000, guid: f42fa7ceadbb60946999b060e3671ab1, type: 3}

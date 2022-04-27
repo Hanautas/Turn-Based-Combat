@@ -15,3 +15,4 @@ MonoBehaviour:
   weaponName: Knife
   maxDamage: 3
   minDamage: 2
+  soundEffect: {fileID: 8300000, guid: f42fa7ceadbb60946999b060e3671ab1, type: 3}

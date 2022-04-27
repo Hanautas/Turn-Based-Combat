@@ -113,8 +113,6 @@ public class Unit : MonoBehaviour
             currentHealth -= damage;
         }
 
-        AudioManager.instance.PlaySound(AudioManager.instance.damageClip);
-
         UpdateSlider(healthSlider, healthText, maxHealth, currentHealth);
 
         if (team == Team.Player)

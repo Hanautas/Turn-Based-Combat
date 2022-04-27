@@ -8,8 +8,6 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource audioSource;
 
-    public AudioClip damageClip;
-
     void Awake()
     {
         instance = this;

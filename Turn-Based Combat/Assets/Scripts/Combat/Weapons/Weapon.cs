@@ -9,8 +9,12 @@ public class Weapon : ScriptableObject
     public int maxDamage;
     public int minDamage;
 
+    public AudioClip soundEffect;
+
     public int Damage()
     {
+        AudioManager.instance.PlaySound(soundEffect);
+
         return Utility.GetRandomValue(minDamage, maxDamage);
     }
 }

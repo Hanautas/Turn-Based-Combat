@@ -1866,7 +1866,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 869113682}
-  damageClip: {fileID: 8300000, guid: f42fa7ceadbb60946999b060e3671ab1, type: 3}
 --- !u!4 &869113684
 Transform:
   m_ObjectHideFlags: 0
@@ -2845,10 +2844,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entities:
-  - {fileID: 11400000, guid: de2602a7632ced74b86bc5ba11683ab7, type: 2}
-  - {fileID: 11400000, guid: de2602a7632ced74b86bc5ba11683ab7, type: 2}
-  - {fileID: 11400000, guid: de2602a7632ced74b86bc5ba11683ab7, type: 2}
-  - {fileID: 11400000, guid: de2602a7632ced74b86bc5ba11683ab7, type: 2}
+  - {fileID: 11400000, guid: ddab7a885347aa7418816456e9b1c804, type: 2}
+  - {fileID: 11400000, guid: ddab7a885347aa7418816456e9b1c804, type: 2}
+  - {fileID: 11400000, guid: ddab7a885347aa7418816456e9b1c804, type: 2}
+  - {fileID: 11400000, guid: ddab7a885347aa7418816456e9b1c804, type: 2}
 --- !u!4 &1259702040
 Transform:
   m_ObjectHideFlags: 0
