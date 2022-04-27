@@ -17,7 +17,7 @@ public class Revive : Ability
         if (target.IsDead())
         {
             TurnBasedCombatSystem.instance.ResetAbilityMode();
-            TurnBasedCombatSystem.instance.currentUnit.SetStamina(cost);
+            TurnBasedCombatSystem.instance.GetCurrentUnit().SetStamina(cost);
 
             target.Revive();
             target.Heal(amount);

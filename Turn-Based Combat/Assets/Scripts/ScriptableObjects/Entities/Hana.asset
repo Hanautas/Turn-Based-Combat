@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f585f0e236e784dbabc8a648e55f34, type: 3}
   m_Name: Hana
   m_EditorClassIdentifier: 
-  unitSprite: {fileID: 21300000, guid: 607ec47c5eb3d2b46b3419a6462ea96b, type: 3}
+  unitSprite: {fileID: 21300000, guid: f4ef44bf18ebc5e4cb1a143402b7d2d9, type: 3}
   unitData:
     unitName: Hana
     unitNameColor: {r: 0.99607843, g: 0.2627451, b: 0.8235294, a: 1}
     maxHealth: 100
-    maxStamina: 100
-    weapon: {fileID: 11400000, guid: c213de0eecbfacf4eb1d8b88bf4312c5, type: 2}
+    maxStamina: 50
+    weapon: {fileID: 11400000, guid: 931982052404c944ca31b587010fd33e, type: 2}
     abilities:
     - {fileID: 11400000, guid: 3d8ec34b4933bca4596b34782d6f45e7, type: 2}
     - {fileID: 11400000, guid: 6b7173b463f07e74b96ba69af52124e4, type: 2}

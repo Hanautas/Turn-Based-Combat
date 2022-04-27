@@ -17,7 +17,7 @@ public class Heal : Ability
         if (!target.IsDead())
         {
             TurnBasedCombatSystem.instance.ResetAbilityMode();
-            TurnBasedCombatSystem.instance.currentUnit.SetStamina(cost);
+            TurnBasedCombatSystem.instance.GetCurrentUnit().SetStamina(cost);
 
             target.Heal(amount);
 

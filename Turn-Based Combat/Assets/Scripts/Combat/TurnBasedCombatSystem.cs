@@ -254,9 +254,9 @@ public class TurnBasedCombatSystem : MonoBehaviour
     {
         PlayerActions(false);
 
-        GetRandomPlayerUnit().Damage(currentUnit.Attack());
+        AI ai = new AI(currentUnit);
 
-        EndTurn();
+        ai.Activate();
     }
 
     public void EndTurn()
@@ -321,6 +321,11 @@ public class TurnBasedCombatSystem : MonoBehaviour
         {
             unit.SetStamina(2);
         }
+    }
+
+    public Unit GetCurrentUnit()
+    {
+        return currentUnit;
     }
 
     public Unit GetRandomPlayerUnit()
@@ -395,6 +400,11 @@ public class TurnBasedCombatSystem : MonoBehaviour
         {
             Debug.Log("Can't attack!");
         }
+    }
+
+    public Ability GetCurrentAbility()
+    {
+        return currentAbility;
     }
 
     public void AbilityMode(Ability ability, Team team)

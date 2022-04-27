@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   weaponName: Knife
-  maxDamage: 2
-  minDamage: 3
+  maxDamage: 3
+  minDamage: 2

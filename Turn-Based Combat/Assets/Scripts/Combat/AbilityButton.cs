@@ -24,7 +24,7 @@ public class AbilityButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void SetAbilityMode()
     {
-        if (TurnBasedCombatSystem.instance.currentUnit.CheckStaminaCost(ability.cost))
+        if (TurnBasedCombatSystem.instance.GetCurrentUnit().CheckStaminaCost(ability.cost))
         {
             ability.SetMode();
         }

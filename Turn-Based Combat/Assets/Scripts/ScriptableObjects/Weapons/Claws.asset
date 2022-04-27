@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Claws
   m_EditorClassIdentifier: 
   weaponName: Claws
-  maxDamage: 3
-  minDamage: 4
+  maxDamage: 4
+  minDamage: 3

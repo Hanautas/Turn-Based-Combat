@@ -229,15 +229,35 @@ public class Unit : MonoBehaviour
 
     public void ActivateAbility()
     {
-        if (TurnBasedCombatSystem.instance.currentAbility != null)
+        Ability currentAbility = TurnBasedCombatSystem.instance.GetCurrentAbility();
+
+        if (currentAbility != null)
         {
-            TurnBasedCombatSystem.instance.currentAbility.Activate(this);
+            currentAbility.Activate(this);
         }
     }
 
     public void AddStatusEffect(StatusEffect statusEffect)
     {
-        statusEffects.Add(new StatusEffectObject(statusEffect));
+        if (CheckStatusEffect(statusEffect))
+        {
+            statusEffects.Add(new StatusEffectObject(statusEffect));
+        }
+    }
+
+    private bool CheckStatusEffect(StatusEffect statusEffect)
+    {
+        foreach (StatusEffectObject statusEffectObject in statusEffects)
+        {
+            if (statusEffectObject.statusEffect == statusEffect)
+            {
+                statusEffectObject.duration = statusEffect.duration;
+
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void CheckStatusEffects()

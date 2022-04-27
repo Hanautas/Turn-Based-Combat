@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd65109c3eab5147a51d5fc8fa45d67, type: 3}
-  m_Name: Arm Cannon
+  m_Script: {fileID: 11500000, guid: beb20dcac3fd07d48b34e45ade6dc78b, type: 3}
+  m_Name: Sharp Claws
   m_EditorClassIdentifier: 
-  weaponName: Arm Cannon
-  maxDamage: 5
-  minDamage: 4
+  weaponName: Sharp Claws
+  maxDamage: 20
+  minDamage: 10

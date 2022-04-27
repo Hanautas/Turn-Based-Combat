@@ -23,7 +23,7 @@ public class Bite : Ability
         if (!target.IsDead())
         {
             TurnBasedCombatSystem.instance.ResetAbilityMode();
-            TurnBasedCombatSystem.instance.currentUnit.SetStamina(cost);
+            TurnBasedCombatSystem.instance.GetCurrentUnit().SetStamina(cost);
 
             if (Utility.GetRandomChance(hitChance))
             {

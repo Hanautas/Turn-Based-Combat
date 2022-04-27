@@ -23,7 +23,7 @@ public class AbilityHandler : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        abilities = TurnBasedCombatSystem.instance.currentUnit.abilities;
+        abilities = TurnBasedCombatSystem.instance.GetCurrentUnit().abilities;
 
         foreach (Ability ability in abilities)
         {

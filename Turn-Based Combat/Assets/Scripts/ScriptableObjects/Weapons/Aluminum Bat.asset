@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Aluminum Bat
   m_EditorClassIdentifier: 
   weaponName: Aluminum Bat
-  maxDamage: 3
-  minDamage: 4
+  maxDamage: 4
+  minDamage: 3
