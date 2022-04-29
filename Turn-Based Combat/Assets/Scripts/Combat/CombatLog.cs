@@ -14,7 +14,7 @@ public class CombatLog : MonoBehaviour
     void Awake()
     {
         instance = this;
-    }    
+    }
 
     public void CreateLog(string text)
     {
@@ -26,7 +26,25 @@ public class CombatLog : MonoBehaviour
 
         Debug.Log(text);
 
-        StartCoroutine(DestroyLog(textObject, 4f));
+        StartCoroutine(DestroyLog(textObject, 10f));
+    }
+
+    public void CreateLog(string text, Team team)
+    {
+        GameObject textObject = Instantiate(prefab) as GameObject;
+        textObject.transform.SetParent(content, false);
+
+        Text textComponent = textObject.GetComponent<Text>();
+        textComponent.text = text;
+
+        if (team == Team.Enemy)
+        {
+            textComponent.color = new Color(1, 0, 0, 1);
+        }
+
+        Debug.Log(text);
+
+        StartCoroutine(DestroyLog(textObject, 10f));
     }
 
     private IEnumerator DestroyLog(GameObject log, float delay)

@@ -282,6 +282,8 @@ public class TurnBasedCombatSystem : MonoBehaviour
 
             SelectNextActiveUnit();
 
+            Debug.Log("Current Unit: " + currentUnitIndex);
+
             currentUnit.CheckStatusEffects();
 
             if (!currentUnit.IsDead())
@@ -306,6 +308,8 @@ public class TurnBasedCombatSystem : MonoBehaviour
     {
         round++;
 
+        Debug.Log("Round: " + round);
+
         foreach (Unit unit in playerUnits)
         {
             unit.SetStamina(2);
@@ -326,6 +330,11 @@ public class TurnBasedCombatSystem : MonoBehaviour
     public Unit GetCurrentUnit()
     {
         return currentUnit;
+    }
+
+    public Team GetCurrentUnitTeam()
+    {
+        return currentUnit.team;
     }
 
     public Unit GetRandomPlayerUnit()
@@ -392,13 +401,17 @@ public class TurnBasedCombatSystem : MonoBehaviour
         {
             AttackMode(false);
 
-            target.Damage(currentUnit.Attack());
+            int damage = currentUnit.Attack();
+
+            target.Damage(damage);
+
+            CombatLog.instance.CreateLog($"{currentUnit.unitName} attacked {target.unitName} for {damage} damage!", currentUnit.team);
 
             EndTurn();
         }
         else
         {
-            Debug.Log("Can't attack!");
+            Debug.Log("Can't attack");
         }
     }
 

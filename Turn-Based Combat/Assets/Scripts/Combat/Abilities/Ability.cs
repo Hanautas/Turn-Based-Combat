@@ -17,7 +17,7 @@ public class Ability : ScriptableObject
         Debug.Log("No Function!");
     }
 
-    public virtual void Activate(Unit target)
+    public virtual void Activate(Unit unit, Unit target)
     {
         Debug.Log("No Function!");
     }

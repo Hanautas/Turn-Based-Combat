@@ -18,7 +18,7 @@ public class Bite : Ability
         TurnBasedCombatSystem.instance.AbilityMode(this, Team.Enemy);
     }
 
-    public override void Activate(Unit target)
+    public override void Activate(Unit unit, Unit target)
     {
         if (!target.IsDead())
         {
@@ -31,13 +31,13 @@ public class Bite : Ability
 
                 target.Damage(damage);
 
-                CombatLog.instance.CreateLog($"{target.unitName} took {damage} damage!");
+                CombatLog.instance.CreateLog($"{unit.unitName} attacked {target.unitName} for {damage} damage!", unit.team);
 
                 target.AddStatusEffect(statusEffect);
             }
             else
             {
-                CombatLog.instance.CreateLog("Missed!");
+                CombatLog.instance.CreateLog($"{unit.unitName} missed!", unit.team);
             }
 
             TurnBasedCombatSystem.instance.EndTurn();

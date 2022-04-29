@@ -83,11 +83,7 @@ public class Unit : MonoBehaviour
     {        
         if (!IsDead())
         {
-            int damage = weapon.Damage();
-
-            CombatLog.instance.CreateLog($"{unitName} attacked for {damage} damage!");
-
-            return damage;
+            return weapon.Damage();
         }
         else
         {
@@ -221,7 +217,7 @@ public class Unit : MonoBehaviour
 
         if (isDefending)
         {
-            CombatLog.instance.CreateLog($"{unitName} is defending!");
+            CombatLog.instance.CreateLog($"{unitName} is defending!", team);
         }
     }
 
@@ -231,7 +227,7 @@ public class Unit : MonoBehaviour
 
         if (currentAbility != null)
         {
-            currentAbility.Activate(this);
+            currentAbility.Activate(TurnBasedCombatSystem.instance.GetCurrentUnit(), this);
         }
     }
 

@@ -12,7 +12,7 @@ public class Heal : Ability
         TurnBasedCombatSystem.instance.AbilityMode(this, Team.Player);
     }
 
-    public override void Activate(Unit target)
+    public override void Activate(Unit unit, Unit target)
     {
         if (!target.IsDead())
         {
@@ -21,7 +21,7 @@ public class Heal : Ability
 
             target.Heal(amount);
 
-            CombatLog.instance.CreateLog($"{target.unitName} healed for {amount} health!");
+            CombatLog.instance.CreateLog($"{unit.unitName} healed {target.unitName} for {amount} health!", unit.team);
 
             TurnBasedCombatSystem.instance.EndTurn();
         }

@@ -48,24 +48,24 @@ public class Fury : Ability
         TurnBasedCombatSystem.instance.AbilityMode(this, Team.Enemy);
     }
 
-    public override void Activate(Unit target)
+    public override void Activate(Unit unit, Unit target)
     {
         if (!target.IsDead())
         {
             TurnBasedCombatSystem.instance.ResetAbilityMode();
             TurnBasedCombatSystem.instance.GetCurrentUnit().SetStamina(cost);
 
-            coroutineStarter.StartCoroutine(StartAttack(target));
+            coroutineStarter.StartCoroutine(StartAttack(unit, target));
         }
     }
 
-    private IEnumerator StartAttack(Unit target)
+    private IEnumerator StartAttack(Unit unit, Unit target)
     {
         int damage = Utility.GetRandomValue(minDamage, maxDamage);
 
         target.Damage(damage);
 
-        CombatLog.instance.CreateLog($"{target.unitName} took {damage} damage!");
+        CombatLog.instance.CreateLog($"{unit.unitName} attacked {target.unitName} for {damage} damage!", unit.team);
 
         for (int i = 0; i < hits; i++)
         {
@@ -75,15 +75,24 @@ public class Fury : Ability
             {
                 int damage_2 = Utility.GetRandomValue(minDamage, maxDamage);
 
-                Unit target_2 = TurnBasedCombatSystem.instance.GetRandomEnemyUnit();
+                Unit target_2 = null;
+
+                if (unit.team == Team.Player)
+                {
+                    target_2 = TurnBasedCombatSystem.instance.GetRandomEnemyUnit();
+                }
+                else if (unit.team == Team.Enemy)
+                {
+                    target_2 = TurnBasedCombatSystem.instance.GetRandomPlayerUnit();
+                }
 
                 target_2.Damage(damage_2);
 
-                CombatLog.instance.CreateLog($"{target_2.unitName} took {damage_2} damage!");
+                CombatLog.instance.CreateLog($"{unit.unitName} attacked {target_2.unitName} for {damage_2} damage!", unit.team);
             }
             else
             {
-                CombatLog.instance.CreateLog("Missed!");
+                CombatLog.instance.CreateLog($"{unit.unitName} missed!", unit.team);
             }
         }
 

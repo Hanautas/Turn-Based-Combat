@@ -23,7 +23,7 @@ public class AI
 
                 if (unit.CheckStaminaCost(ability.cost))
                 {
-                    ability.Activate(TurnBasedCombatSystem.instance.GetRandomPlayerUnit());
+                    ability.Activate(unit, TurnBasedCombatSystem.instance.GetRandomPlayerUnit());
 
                     return;
                 }
@@ -34,7 +34,13 @@ public class AI
             }
         }
 
-        TurnBasedCombatSystem.instance.GetRandomPlayerUnit().Damage(unit.Attack());
+        int damage = unit.Attack();
+
+        Unit target = TurnBasedCombatSystem.instance.GetRandomPlayerUnit();
+
+        target.Damage(damage);
+
+        CombatLog.instance.CreateLog($"{unit.unitName} attacked {target.unitName} for {damage} damage!", unit.team);
 
         TurnBasedCombatSystem.instance.EndTurn();
     }
