@@ -85,9 +85,21 @@ public class TurnBasedCombatSystem : MonoBehaviour
             }
         }
 
-        foreach (Entity entity in combatEncounter.entities)
+        if (combatEncounter.entities.Count > 1)
         {
-            CreateEnemyUnits(entity.unitData, entity.unitSprite);
+            List<string> letters = new List<string>(){"A", "B", "C", "D"};
+
+            for (int i = 0; i < combatEncounter.entities.Count; i++)
+            {
+                UnitData newUnitData = new UnitData(combatEncounter.entities[i].unitData);
+                newUnitData.unitName = $"{newUnitData.unitName} {letters[i]}";
+
+                CreateEnemyUnits(newUnitData, combatEncounter.entities[i].unitSprite);
+            }
+        }
+        else
+        {
+            CreateEnemyUnits(combatEncounter.entities[0].unitData, combatEncounter.entities[0].unitSprite);
         }
     }
 

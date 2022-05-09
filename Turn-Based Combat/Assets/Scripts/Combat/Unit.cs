@@ -69,14 +69,14 @@ public class Unit : MonoBehaviour
         unitNameColor = new Color(1, 1, 1, 1);
     }
 
-    public void CreateUnit(UnitData data)
+    public void CreateUnit(UnitData unitData)
     {
-        unitName = data.unitName;
-        unitNameColor = data.unitNameColor;
-        maxHealth = data.maxHealth;
-        maxStamina = data.maxStamina;
-        weapon = data.weapon;
-        abilities = data.abilities;
+        unitName = unitData.unitName;
+        unitNameColor = unitData.unitNameColor;
+        maxHealth = unitData.maxHealth;
+        maxStamina = unitData.maxStamina;
+        weapon = unitData.weapon;
+        abilities = unitData.abilities;
     }
 
     public int Attack()

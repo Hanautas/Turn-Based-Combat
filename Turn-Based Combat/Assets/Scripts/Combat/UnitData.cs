@@ -20,4 +20,14 @@ public class UnitData
 
     [Header("Abilities")]
     public Ability[] abilities;
+
+    public UnitData(UnitData unitData)
+    {
+        unitName = unitData.unitName;
+        unitNameColor = unitData.unitNameColor;
+        maxHealth = unitData.maxHealth;
+        maxStamina = unitData.maxStamina;
+        weapon = unitData.weapon;
+        abilities = unitData.abilities;
+    }
 }
