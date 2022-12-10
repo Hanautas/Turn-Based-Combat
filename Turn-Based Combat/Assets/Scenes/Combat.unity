@@ -999,8 +999,8 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 7
-  m_Spacing: -64
+  m_ChildAlignment: 4
+  m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -2844,10 +2844,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entities:
-  - {fileID: 11400000, guid: ddab7a885347aa7418816456e9b1c804, type: 2}
-  - {fileID: 11400000, guid: ddab7a885347aa7418816456e9b1c804, type: 2}
-  - {fileID: 11400000, guid: ddab7a885347aa7418816456e9b1c804, type: 2}
-  - {fileID: 11400000, guid: ddab7a885347aa7418816456e9b1c804, type: 2}
+  - {fileID: 11400000, guid: d25e0df04e72e5a4fb324c87e94e723b, type: 2}
+  - {fileID: 11400000, guid: d25e0df04e72e5a4fb324c87e94e723b, type: 2}
+  - {fileID: 11400000, guid: d25e0df04e72e5a4fb324c87e94e723b, type: 2}
+  - {fileID: 11400000, guid: d25e0df04e72e5a4fb324c87e94e723b, type: 2}
 --- !u!4 &1259702040
 Transform:
   m_ObjectHideFlags: 0
